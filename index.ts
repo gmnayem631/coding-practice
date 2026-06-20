@@ -34,6 +34,11 @@ function placeOrder(pizzaName) {
   const selectedPizza = menu.find(
     (singleItem) => singleItem.name.toLowerCase() === pizzaName.toLowerCase(),
   );
+
+  if (!selectedPizza) {
+    console.error(`${selectedPizza} does not exist`);
+    return;
+  }
   cashInRegister = selectedPizza.price + cashInRegister;
 
   const newOrder = { pizza: selectedPizza, status: "ordered", id: id++ };
@@ -55,7 +60,7 @@ placeOrder("Hawaiian");
  * to simulate real IDs being managed for us by a database.
  */
 
-function completeOrder(orderId) {
+function completeOrder(orderId: number) {
   const order = orderQueue.find(
     (selectedOrder) => selectedOrder.id === orderId,
   );
