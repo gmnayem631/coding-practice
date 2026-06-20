@@ -1,3 +1,8 @@
+type Pizza = {
+  name: string;
+  price: number;
+};
+
 const menu = [
   { name: "Margherita", price: 8 },
   { name: "Pepperoni", price: 10 },
@@ -14,7 +19,7 @@ let id = 0;
  * and adds it to the menu
  */
 
-const addNewPizza = (pizza) => {
+const addNewPizza = (pizza: Pizza) => {
   menu.push(pizza);
   return menu;
 };
@@ -30,7 +35,7 @@ const addNewPizza = (pizza) => {
  * 4. returns the new order object (just in case we need it later)
  */
 
-function placeOrder(pizzaName) {
+function placeOrder(pizzaName: string) {
   const selectedPizza = menu.find(
     (singleItem) => singleItem.name.toLowerCase() === pizzaName.toLowerCase(),
   );
