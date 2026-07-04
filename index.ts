@@ -60,7 +60,7 @@ placeOrder("Hawaiian");
  * to either be a string or a number.
  */
 
-const getPizzaDetail = (identifier: Identifier) => {
+export const getPizzaDetail = (identifier: Identifier) => {
   /**
    * challenge: write the code to check if the parameter is a string or a number,
    * and use the menu.find() method accordingly
@@ -86,4 +86,4 @@ function completeOrder(orderId: number) {
   return order;
 }
 
-console.log(completeOrder(2));
+// console.log(completeOrder(2));
