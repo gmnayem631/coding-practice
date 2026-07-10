@@ -14,23 +14,29 @@ type Identifier = string | number;
 
 // const pizza = { id: 1, pizza: "Veggie", status: "ordered" };
 
-const menu: Pizza[] = [
-  { id: 1, name: "Margherita", price: 8 },
-  { id: 2, name: "Pepperoni", price: 10 },
-  { id: 3, name: "Hawaiian", price: 12 },
-  { id: 4, name: "Veggie", price: 9 },
-];
-
 let cashInRegister = 100;
 const orderHistory: Order[] = [];
-let id = 0;
+let nextPizzaId = 1;
+let id = 1;
 
-const addNewPizza = (pizza: Pizza) => {
+const menu: Pizza[] = [
+  { id: nextPizzaId++, name: "Margherita", price: 8 },
+  { id: nextPizzaId++, name: "Pepperoni", price: 10 },
+  { id: nextPizzaId++, name: "Hawaiian", price: 12 },
+  { id: nextPizzaId++, name: "Veggie", price: 9 },
+];
+
+function addNewPizza(pizza: Pizza): void {
+  pizza.id = nextPizzaId++;
   menu.push(pizza);
-  return menu;
-};
+  // return menu;
+}
 
-function placeOrder(pizzaName: string) {
+addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
+addNewPizza({ name: "BBQ Chicken", price: 10 });
+addNewPizza({ name: "Spicy Sausage", price: 11 });
+
+function placeOrder(pizzaName: string): Order | undefined {
   const selectedPizza = menu.find(
     (singleItem) => singleItem.name.toLowerCase() === pizzaName.toLowerCase(),
   );
@@ -63,7 +69,7 @@ export function getPizzaDetail(identifier: Identifier): Pizza | undefined {
   }
 }
 
-function completeOrder(orderId: number) {
+function completeOrder(orderId: number): Order | undefined {
   const order = orderHistory.find(
     (selectedOrder) => selectedOrder.id === orderId,
   );
