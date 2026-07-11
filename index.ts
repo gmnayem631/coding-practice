@@ -26,6 +26,22 @@ const menu: Pizza[] = [
   { id: nextPizzaId++, name: "Veggie", price: 9 },
 ];
 
+function addToArray<T>(array: T[], item: T): T[] | undefined {
+  array.push(item);
+  return array;
+}
+
+addToArray<Pizza>(menu, {
+  id: nextPizzaId++,
+  name: "chicken bacon ranch",
+  price: 12,
+});
+addToArray<Order>(orderHistory, {
+  id: nextPizzaId++,
+  pizza: menu[2],
+  status: "completed",
+});
+
 function addNewPizza(pizza: Omit<Pizza, "id">): Pizza {
   const newPizzaObj: Pizza = { id: nextPizzaId++, ...pizza };
   // pizza.id = nextPizzaId++;
@@ -33,9 +49,9 @@ function addNewPizza(pizza: Omit<Pizza, "id">): Pizza {
   return newPizzaObj;
 }
 
-addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
-addNewPizza({ name: "BBQ Chicken", price: 10 });
-addNewPizza({ name: "Spicy Sausage", price: 11 });
+// addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
+// addNewPizza({ name: "BBQ Chicken", price: 10 });
+// addNewPizza({ name: "Spicy Sausage", price: 11 });
 
 function placeOrder(pizzaName: string): Order | undefined {
   const selectedPizza = menu.find(
