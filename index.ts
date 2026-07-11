@@ -26,10 +26,11 @@ const menu: Pizza[] = [
   { id: nextPizzaId++, name: "Veggie", price: 9 },
 ];
 
-function addNewPizza(pizza: Pizza): void {
-  pizza.id = nextPizzaId++;
-  menu.push(pizza);
-  // return menu;
+function addNewPizza(pizza: Omit<Pizza, "id">): Pizza {
+  const newPizzaObj: Pizza = { id: nextPizzaId++, ...pizza };
+  // pizza.id = nextPizzaId++;
+  menu.push(newPizzaObj);
+  return newPizzaObj;
 }
 
 addNewPizza({ name: "Chicken Bacon Ranch", price: 12 });
